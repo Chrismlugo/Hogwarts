@@ -1,22 +1,28 @@
+require('sinatra')
+require('sinatra/contrib/all')
 require('pry-byebug')
-require_relative('models/student')
-require_relative('db/feed_hogwarts')
+require_relative('./models/student.rb')
 
+#index
+get "/students" do
+  @students = Student.all()
+  erb(:index)
+end
 
-# student1 = Student.new({
-#   'first_name' => 'Chris',
-#   'second_name' => 'Murphy',
-#   'house' => 'Gryffindor',
-#   'age' => 26
-#   })
-# student1.save()
+#create
+post "/students" do
+  @student = Student.new(params)
+  @student.save()
+  erb(:create)
+end
 
+#new
+get "/students/new" do
+  erb(:new)
+end
 
-
-
-
-
-
-binding.pry()
-
-nil
+# show
+get "/students/:id" do
+  @student = Student.find(params[:id])
+  erb(:show)
+end
