@@ -1,5 +1,6 @@
 require_relative('../models/student')
 require_relative('../models/house')
+require_relative('../models/sorting_hat')
 
 Student.delete_all()
 House.delete_all()
@@ -8,7 +9,6 @@ House.delete_all()
 student1 = Student.new({
   'first_name' => 'Chris',
   'second_name' => 'Murphy',
-  'house' => 'Gryffindor',
   'age' => 26
   })
 
@@ -17,7 +17,6 @@ student1.save()
 student2 = Student.new({
   'first_name' => 'Ria',
   'second_name' => 'Koronidi',
-  'house' => 'Gryffindor',
   'age' => 31
   })
 
@@ -26,7 +25,6 @@ student2.save()
 student3 = Student.new({
   'first_name' => 'Ron',
   'second_name' => 'Weasley',
-  'house' => 'Ravenclaw',
   'age' => 16
   })
 
@@ -35,7 +33,6 @@ student3.save()
 student4 = Student.new({
   'first_name' => 'Jeff',
   'second_name' => 'Bridges',
-  'house' => 'Hufflepuff',
   'age' => 60
   })
 
@@ -70,3 +67,41 @@ house4 = House.new({
         })
 
 house4.save()
+
+sorting_hat1 = SortingHat.new({
+
+  'house_id' => house1.id,
+  'student_id' => student1.id
+
+  })
+
+ sorting_hat1.save()
+
+ sorting_hat2 = SortingHat.new({
+
+   'house_id' => house2.id,
+   'student_id' => student2.id
+
+   })
+
+  sorting_hat2.save()
+
+  sorting_hat3 = SortingHat.new({
+
+    'house_id' => house3.id,
+    'student_id' => student3.id
+
+    })
+
+   sorting_hat3.save()
+
+   sorting_hat4 = SortingHat.new({
+
+     'house_id' => house4.id,
+     'student_id' => student4.id
+
+     })
+
+    sorting_hat4.save()
+
+    p "#{student1.assign_student_to_house()} has house #{house1.name}"
